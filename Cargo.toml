@@ -1,0 +1,17 @@
+[package]
+name = "axum-tera-i18n"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+tokio = { version = "1.0", features = ["full"]}
+axum = "0.8.3"
+tower-http = { version = "0.5", features = ["fs"]}
+serde = { version = "1.0.219", features = ["derive"]}
+mime = "0.3"
+sea-orm = { version = "1.1.0", features =  ["sqlx-postgres", "runtime-tokio-rustls"]}
+dotenvy = "0.15.7"
+lazy_static = "1.5.0"
+tower-cookies = "0.11.0"
+tera = "1.20.0"
+fluent-templates = { version = "*", features = ["tera"] }
