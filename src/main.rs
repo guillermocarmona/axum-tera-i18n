@@ -33,10 +33,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let lang_codes: Vec<String> = LOCALES.locales().map(|langid| langid.to_string()).collect();
 
-    let app = Router::new()
+    let app: Router<home::AppState> = Router::new()
         .merge(pages::router(lang_codes))
         .nest("/api", api::router())
-        //.layer(Extension(db))
         .layer(Extension(tera))
         .nest_service("/static", ServeDir::new("static"));
 
