@@ -1,8 +1,7 @@
-use crate::pages::AppState;
 use axum::{Extension, Router, response::Html, routing::get};
 use tera::{Context, Tera};
 
-pub fn router() -> Router<AppState> {
+pub fn router() -> Router {
     Router::new().route("/", get(index))
 }
 
