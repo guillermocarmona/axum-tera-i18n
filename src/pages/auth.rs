@@ -1,9 +1,5 @@
-use axum::{Extension, Router, response::Html, routing::get};
-use sea_orm::Iden;
-use tera::{Context, Tera};
+use axum::{Router, routing::get};
 
-use super::AppState;
-
-pub fn router() -> Router<AppState> {
+pub fn router() -> Router {
     Router::new().route("/", get(|| async { "Auth " }))
 }

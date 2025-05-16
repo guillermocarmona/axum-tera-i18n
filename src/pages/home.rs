@@ -1,18 +1,17 @@
-use axum::{Extension, Router, extract::State, response::Html, routing::get};
+use axum::{Extension, Router, extract::OriginalUri, http::Uri, response::Html, routing::get};
 use tera::{Context, Tera};
 
-use super::AppState;
+use super::get_lang;
 
-pub fn router() -> Router<AppState> {
+pub fn router() -> Router {
     Router::new().route("/", get(index))
 }
 
-async fn index(
-    Extension(tera): Extension<Tera>,
-    State(app_state): State<AppState>,
-) -> Html<String> {
+async fn index(Extension(tera): Extension<Tera>, OriginalUri(uri): OriginalUri) -> Html<String> {
     let mut ctx = Context::new();
-    ctx.insert("lang", &app_state.lang);
+
+    let lang = get_lang(uri);
+    ctx.insert("lang", &lang);
 
     let template = tera
         .render("home/index.html", &ctx)

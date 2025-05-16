@@ -33,7 +33,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let lang_codes: Vec<String> = LOCALES.locales().map(|langid| langid.to_string()).collect();
 
-    let app: Router<home::AppState> = Router::new()
+    let app: Router = Router::new()
         .merge(pages::router(lang_codes))
         .nest("/api", api::router())
         .layer(Extension(tera))
